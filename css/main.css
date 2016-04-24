@@ -103,9 +103,17 @@ img {
     width: 30px;
 }
 
+.online {
+    color: lightgreen;
+}
 
+.offline {
+    color: tomato;
+}
 
-
+.hide {
+    
+}
 
 
 
