@@ -21,32 +21,3 @@ for (var i = 0; i < streams.length; i++) {
 	} //EOF for statement
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $(document).ready(function(){
-// for (var i=0; i<streams.length; i++) {
-// $.getJSON('https://api.twitch.tv/kraken/channels/' + streams[i] + '?callback=?', function(data) {
-//   	console.log(data);	
-//   });
-
-// })
-
-
-// } //EOF streams
-// }); //EOF document ready
-
-
