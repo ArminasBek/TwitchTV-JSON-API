@@ -26,7 +26,7 @@ function getInfo(){
 			data.logo = "http://www.icfcd.net/members/no-logo.png";
 		}
 
-		html = '<div class="item ' + statusClass + '"><img src="' + data.logo + '"> ' + streams[i] + ' : ' + streamVal + '</div>'
+		html = '<div class="item ' + statusClass + '"><img src="' + data.logo + '"> ' + streams[i] + ' <span class="' + statusClass +'">&#8226;</span><p>' + streamVal + '</p></div>'
 
 		$("div#data").append(html);
 		console.log(data);
@@ -35,7 +35,7 @@ function getInfo(){
 	}//EOF for statement
 }//EOF getInfo();
 
-
+$(document).ready(function(){
 getInfo();
 
 //Button Listeners
@@ -51,5 +51,5 @@ $("button#all").on("click", function(){
 	$(".item.online").show();
 	$(".item.offline").show()
 })
+});
 
-//
