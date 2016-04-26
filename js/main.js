@@ -5,18 +5,19 @@ var html;
 function getInfo(){
 	for (var i = 0; i < streams.length; i++) {
 		(function(i){
-		$.getJSON('https://api.twitch.tv/kraken/streams/' + streams[i] +'?callback=?', function(data){
-		if(data.stream == null){
+		$.getJSON('https://api.twitch.tv/kraken/channels/' + streams[i] +'?callback=?', function(data){
+		if(data.status == null){
 			streamVal = "Offline";
 		} else {
-			streamVal = data.stream.channel.status;
+			streamVal = data.status;
 		}
 
 		if(data.status == 422) {
 			streamVal = "Channel is unavailable";
+			data.logo = "https://image.freepik.com/free-icon/question-mark-on-a-circular-black-background_318-41916.png";
 		}
 
-		html = '<div class="item">' + streams[i] + ' : ' + streamVal + '</div>'
+		html = '<div class="item"><img src="' + data.logo + '"> ' + streams[i] + ' : ' + streamVal + '</div>'
 
 		$("div#data").append(html);
 		console.log(data);
