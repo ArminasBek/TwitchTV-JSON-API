@@ -1,6 +1,7 @@
-var streams = ["freecodecamp", "storbeck", "ogamingsc2", "comster404"];
+var streams = ["freecodecamp", "storbeck", "terakilobyte", "habathcx","RobotCaleb","thomasballinger","noobs2ninjas","beohoff", "comster404"];
 var streamVal;
 var html;
+var statusClass;
 //Get info from Twitch.tv API
 function getInfo(){
 	for (var i = 0; i < streams.length; i++) {
@@ -8,16 +9,24 @@ function getInfo(){
 		$.getJSON('https://api.twitch.tv/kraken/channels/' + streams[i] +'?callback=?', function(data){
 		if(data.status == null){
 			streamVal = "Offline";
+			statusClass = "offline";
 		} else {
 			streamVal = data.status;
+			statusClass = "online";
 		}
 
 		if(data.status == 422) {
 			streamVal = "Channel is unavailable";
-			data.logo = "https://image.freepik.com/free-icon/question-mark-on-a-circular-black-background_318-41916.png";
+			statusClass = "offline";
+			data.logo = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png";
+			
 		}
 
-		html = '<div class="item"><img src="' + data.logo + '"> ' + streams[i] + ' : ' + streamVal + '</div>'
+		if(data.logo == null) {
+			data.logo = "http://www.icfcd.net/members/no-logo.png";
+		}
+
+		html = '<div class="item ' + statusClass + '"><img src="' + data.logo + '"> ' + streams[i] + ' : ' + streamVal + '</div>'
 
 		$("div#data").append(html);
 		console.log(data);
@@ -29,7 +38,18 @@ function getInfo(){
 
 getInfo();
 
+//Button Listeners
+$("button#online").on("click", function(){
+	$(".item.offline").hide();
+	$(".item.online").show();
+});
+$("button#offline").on("click", function(){
+	$(".item.online").hide();
+	$(".item.offline").show();
+})
+$("button#all").on("click", function(){
+	$(".item.online").show();
+	$(".item.offline").show()
+})
 
-
-
-
+//
