@@ -132,6 +132,15 @@ span.offline {
     padding: 2.5px;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: lightblue;
+}
+
 p {
     font-style: italic;
 }
